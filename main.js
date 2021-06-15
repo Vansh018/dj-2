@@ -33,13 +33,23 @@ function draw(){
      if(scoreleftwrist > 0.2)
      {
          circle(leftWristX, leftWristY, 20);
-         console.log("HANJI AFM/anjm';af");
+         
          harry_porter.stop();
          if(status == false)
             peter_pan.play();
             document.getElementById("song_name").innerHTML = "Peter Pan";
      }
-   
+     
+
+     if(scorerightwrist > 0.2)
+     {
+         circle(rightWristX, rightWristY, 20);
+       
+         peter_pan.stop();
+         if(status == false)
+            harry_porter.play();
+            document.getElementById("song_name").innerHTML = "Harry Porter";
+     }
 }
 
 function modelLoaded(){
@@ -51,11 +61,16 @@ function gotPoses(results){
         console.log(results);
        
         scoreleftwrist = results[0].pose.keypoints[9].score;
-
+        scorerightwrist = results[0].pose.keypoints[10].score;
        
         console.log("scorelLeftWrist = " + scoreleftwrist );
         leftWristX = results[0].pose.leftWrist.x;
         leftWristY = results[0].pose.leftWrist.y;
+      
+
+
+        console.log("scoreRightWrist = " + scorerightwrist );
+        
         rightWristX = results[0].pose.rightWrist.x;
         rightWristY = results[0].pose.rightWrist.y;
     }
